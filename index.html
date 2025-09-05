@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V2S Demo</title>
+  <style>
+    body {
+      background: #f4f4f4;
+      color: #333;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      margin: 15%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-gap: 50px;
+    }
+
+    .video-container {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 10px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    th, td {
+      text-align: center;
+      vertical-align: top;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    th {
+      background-color: #f4f4f4;
+      font-size: 1.1em;
+    }
+    audio {
+            margin-top: 10px;
+            width: 100%;
+        }
+    .toc {
+        border: 1px solid #ccc;
+        padding: 20px;
+        max-width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #f9f9f9;
+        text-align:center;
+    }
+    .toc h2 {
+        margin-top: 0;
+    }
+    .toc ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .toc ul li {
+        margin: 10px 0;
+    }
+    .toc ul li a {
+        text-decoration: none;
+        color: #007bff;
+    }
+    .toc ul li a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demonstration</h1>
+  <h1>Beyond Video-to-SFX: Video to Audio Synthesis with Environmentally Aware Speech</h1>
+  <hr>
+  <div class="toc">
+    <h2>Table of Content</h2>
+    <ul>
+        <li><a href=""> Arxiv Paper.</a></li>
+        
+        <li><a href="#section1">Application 1: Video Dubbing.</a></li>
+        
+        <li><a href="#section2">Application 2: Immersive Audio Background Conversion.</a></li>
+
+        <!-- <li><a href="">Implementation Codes (Coming soon).</a></li> -->
+    
+    </ul>
+</div>
+<p>This is the demonstration page of our method, please note that due to the limitation of training data, lips in the videos cannot match to the generated speech.</p>
+
+  <hr>
+  <h1 id="section1">Application 1: Video dubbing</h1>
+ <p> This section demonstrates the video dubbing task, where a prompt speaker, transcript, and video are provided to generate corresponding audio that aligns with the visual context with intelligible speech. </p>
+  <table>
+    <tr>
+      <th>Source Video</th>
+      <th>Prompt speaker & Transcript</th>
+      <th>BVS (Ours) </th>
+      <th>VATT</th>
+    </tr>
+
+
+
+    <!-- Row 1 -->
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample2/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample2/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: You are wrong. Our children will not live under communism. Your children will live under freedom.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample2/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample2/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample18/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample18/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: So it's going to create the overlock stitch and cut off the excess fabric at the same time. It's pretty cool.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample18/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample18/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample3/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample3/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: We've got the beach to ourselves! Oh, the beach? You need a tap of that. Twenty pence please. Here you are.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample3/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample3/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample4/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample4/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: That bass is so much bigger than you do. I mean, it's so huge. Huge. Yes! AJ, I got one thing to tell you. Don't be jealous.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample4/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample4/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+
+
+    <!-- Row 2 -->
+
+
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample7/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample7/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: Dark honey. These are honey cells here so... Yeah, there's a brood in here.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample7/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample7/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample8/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample8/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: tired of sitting around I'm here with Terry from another edge driver in truck 138 and he's fired up the barbecue he's cooking fajitas</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample8/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample8/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample9/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample9/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: Good boy. Good boy. Come on. Good boy. That's a good boy.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample9/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample9/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample1/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample1/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: Good football team to open goals here. What a way to do it. Well, we had one goal come to this team. To make sure 16 teams left.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample1/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample1/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample6/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample6/prompt.wav" type="audio/wav">
+        </video>
+        <h3>Transcript: Is he talking? Ew! Buddy, no! He's talking.</h3>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample6/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample6/vatt.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+  </table>
+
+  <h1 id="section2">Application 2: Immersive Audio Background Conversion</h1>
+  <p>This section demonstrates the immersive audio background conversion task, where an audio recording and a video are provided, and the speech content is adapted to match the context of the given video.</p>
+  <table>
+    <tr>
+      <th>Source Video</th>
+      <th> Target Speech</th>
+      <th>Converted Audio </th>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample13/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample13/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample13/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample10/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample10/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample10/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample11/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample11/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample11/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample12/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample12/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample12/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample14/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample14/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample14/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample15/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample15/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample15/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample16/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample16/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample16/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <video controls>
+          <source src="./sample17/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample17/audio.wav" type="audio/wav">
+        </video>
+      </td>
+      <td>
+        <video controls>
+          <source src="./sample17/demo.mp4" type="video/mp4">
+        </video>
+      </td>
+    </tr>
+  </table>
+<hr>
+<h3>Reference:</h3>
+[1] Liu, Xiulong, Kun Su, and Eli Shlizerman. "Tell what you hear from what you see-video to audio generation through text." Advances in Neural Information Processing Systems 37 (2024): 101337-101366.
+</body>
+</html>
